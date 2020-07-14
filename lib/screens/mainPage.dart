@@ -38,8 +38,8 @@ class _BeerState extends State<Beer> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      trailing: LateralButton(false),
-      leading: LateralButton(true),
+      trailing: LateralButton(false, amount),
+      leading: LateralButton(true, amount),
       title: Center(
         child: Text("${widget.capacity} // cantidad: ${amount}"),
       ),

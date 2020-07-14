@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 
 class LateralButton extends StatelessWidget {
   bool positive;
+  int amount;
 
-  LateralButton(this.positive);
+  LateralButton(this.positive, this.amount);
 
   @override
   Widget build(BuildContext context) {
+    _controlQuantity() {
+      if (positive) {
+        this.amount++;
+      } else {
+        this.amount--;
+      }
+    }
+
     return GestureDetector(
       onTap: _controlQuantity(),
       child: Container(
@@ -24,9 +33,5 @@ class LateralButton extends StatelessWidget {
             : Icon(Icons.add_circle_outline, color: Colors.white, size: 50),
       ),
     );
-  }
-
-  _controlQuantity() {
-    print("ASDAasdasdasdSD");
   }
 }
