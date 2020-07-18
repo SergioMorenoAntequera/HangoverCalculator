@@ -39,8 +39,43 @@ class _BeerState extends State<Beer> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      trailing: LateralButton(positive: false, amount: amount),
-      leading: LateralButton(positive: true, amount: amount),
+      trailing: GestureDetector(
+        onTap: () => {
+          setState(() {
+            this.amount++;
+          }),
+        },
+        child: Container(
+          decoration: new BoxDecoration(
+            color: Colors.green[700],
+            borderRadius: new BorderRadius.all(
+              Radius.circular(40.0),
+            ),
+          ),
+          width: 60,
+          height: 60,
+          child: Icon(Icons.add_circle_outline, color: Colors.white, size: 50),
+        ),
+      ),
+      leading: GestureDetector(
+        onTap: () => {
+          setState(() {
+            this.amount--;
+          }),
+        },
+        child: Container(
+          decoration: new BoxDecoration(
+            color: Colors.red,
+            borderRadius: new BorderRadius.all(
+              Radius.circular(40.0),
+            ),
+          ),
+          width: 60,
+          height: 60,
+          child:
+              Icon(Icons.remove_circle_outline, color: Colors.white, size: 50),
+        ),
+      ),
       title: Center(
         child: Text("${widget.capacity} // cantidad: $amount"),
       ),
