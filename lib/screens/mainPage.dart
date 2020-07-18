@@ -11,6 +11,7 @@ class MainPage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Beer(
+              key: UniqueKey(),
               capacity: 0.25,
             ),
           ],
@@ -38,11 +39,15 @@ class _BeerState extends State<Beer> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      trailing: LateralButton(false, amount),
-      leading: LateralButton(true, amount),
+      trailing: LateralButton(positive: false, amount: amount),
+      leading: LateralButton(positive: true, amount: amount),
       title: Center(
-        child: Text("${widget.capacity} // cantidad: ${amount}"),
+        child: Text("${widget.capacity} // cantidad: $amount"),
       ),
     );
+    // return RaisedButton(
+    //   onPressed: _test,
+    //   child: Text("BOTTON ${amount}"),
+    // );
   }
 }
