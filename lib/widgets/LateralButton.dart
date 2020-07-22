@@ -40,7 +40,9 @@ class _LateralButtonState extends State<LateralButton> {
       if (widget.positive) {
         this.amount++;
       } else {
-        this.amount--;
+        if (this.amount >= 0) {
+          this.amount--;
+        }
       }
     });
   }
