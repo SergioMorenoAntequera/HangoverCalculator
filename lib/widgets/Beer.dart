@@ -18,7 +18,7 @@ class _BeerState extends State<Beer> {
       decoration: BoxDecoration(
         color: Colors.brown[300],
         borderRadius: BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(15),
         ),
       ),
       margin: EdgeInsets.all(10),

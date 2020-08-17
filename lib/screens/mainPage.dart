@@ -7,23 +7,54 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar,
-      body: Container(
-        color: Colors.grey[50],
-        child: ListView(
-          children: <Widget>[
-            Container(
+      // body:
+      body: Stack(
+        children: <Widget>[
+          // App background I guess
+          Container(
+            color: Colors.grey[50],
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    "Alcoholico",
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Beer(key: UniqueKey(), capacity: 0.25),
+                Beer(key: UniqueKey(), capacity: 0.33),
+                Beer(key: UniqueKey(), capacity: 0.50),
+                Beer(key: UniqueKey(), capacity: 1.00),
+              ],
+            ),
+          ),
+
+          // Position absolute Thingy
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              color: Color(0xffFFAB99),
               padding: EdgeInsets.all(20),
-              child: Text(
-                "Alcoholico",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              child: Row(
+                // Total y total de litros a la izquierda
+                children: <Widget>[
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text("TOTAL"),
+                      Text("3L"),
+                    ],
+                  ),
+                  RaisedButton(
+                    child: Text("PRA"),
+                    onPressed: (null),
+                  )
+                ],
               ),
             ),
-            Beer(key: UniqueKey(), capacity: 0.25),
-            Beer(key: UniqueKey(), capacity: 0.33),
-            Beer(key: UniqueKey(), capacity: 0.50),
-            Beer(key: UniqueKey(), capacity: 1.00),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
