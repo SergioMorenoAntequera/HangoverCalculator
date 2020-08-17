@@ -10,6 +10,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int amount025 = 0;
+  int amount033 = 0;
+  int amount050 = 0;
+  int amount100 = 0;
   double _totalDrinks = 0;
 
   @override
@@ -56,7 +60,7 @@ class _MainPageState extends State<MainPage> {
                   removeAction: removeDrinks,
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 105,
                 )
               ],
             ),
@@ -67,16 +71,39 @@ class _MainPageState extends State<MainPage> {
             alignment: Alignment.bottomCenter,
             child: Container(
               color: Color(0xffFFAB99),
-              padding: EdgeInsets.all(20),
+              padding:
+                  EdgeInsets.only(top: 20, bottom: 20, left: 13, right: 13),
               child: Row(
                 // Total y total de litros a la izquierda
                 children: <Widget>[
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text("TOTAL"),
-                      Text("${this._totalDrinks}L"),
-                    ],
+                  Container(
+                    padding: EdgeInsets.only(left: 0, right: 30),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "TOTAL",
+                          // style: Theme.of(context).textTheme.headline2,
+                          style: TextStyle(
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            "${formatTotal()} Litros",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   RaisedButton(
                     child: Text("RESET"),
@@ -109,6 +136,15 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _totalDrinks = 0;
     });
+  }
+
+  // To avoid problems with periodic numbers
+  String formatTotal() {
+    if (this._totalDrinks.toString().length < 12)
+      return this._totalDrinks.toString();
+
+    int indexAux = this._totalDrinks.toString().indexOf(".");
+    return this._totalDrinks.toString().substring(0, indexAux + 3);
   }
 
   AppBar appbar = new AppBar(
