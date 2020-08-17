@@ -60,7 +60,7 @@ class _MainPageState extends State<MainPage> {
                   removeAction: removeDrinks,
                 ),
                 SizedBox(
-                  height: 105,
+                  height: 115,
                 )
               ],
             ),
@@ -126,7 +126,7 @@ class _MainPageState extends State<MainPage> {
 
   removeDrinks(double amount) {
     setState(() {
-      if (_totalDrinks > amount) {
+      if (_totalDrinks >= amount) {
         _totalDrinks -= amount;
       }
     });

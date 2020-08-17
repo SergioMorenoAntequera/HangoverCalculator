@@ -24,7 +24,7 @@ class _BeerState extends State<Beer> {
           Radius.circular(15),
         ),
       ),
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.only(top: 5, right: 10, bottom: 5, left: 10),
       padding: EdgeInsets.only(top: 12, bottom: 12),
       child: ListTile(
         //Sumar
