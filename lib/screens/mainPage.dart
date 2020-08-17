@@ -10,7 +10,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _totalDrinks = 0;
+  double _totalDrinks = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,33 @@ class _MainPageState extends State<MainPage> {
                     style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Beer(key: UniqueKey(), capacity: 0.25),
-                Beer(key: UniqueKey(), capacity: 0.33),
-                Beer(key: UniqueKey(), capacity: 0.50),
-                Beer(key: UniqueKey(), capacity: 1.00),
+                Beer(
+                  key: UniqueKey(),
+                  capacity: 0.25,
+                  addAction: addDrinks,
+                  removeAction: removeDrinks,
+                ),
+                Beer(
+                  key: UniqueKey(),
+                  capacity: 0.33,
+                  addAction: addDrinks,
+                  removeAction: removeDrinks,
+                ),
+                Beer(
+                  key: UniqueKey(),
+                  capacity: 0.50,
+                  addAction: addDrinks,
+                  removeAction: removeDrinks,
+                ),
+                Beer(
+                  key: UniqueKey(),
+                  capacity: 1.00,
+                  addAction: addDrinks,
+                  removeAction: removeDrinks,
+                ),
+                SizedBox(
+                  height: 100,
+                )
               ],
             ),
           ),
@@ -52,12 +75,12 @@ class _MainPageState extends State<MainPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text("TOTAL"),
-                      Text(this._totalDrinks.toString()),
+                      Text("${this._totalDrinks}L"),
                     ],
                   ),
                   RaisedButton(
-                    child: Text("PRA"),
-                    onPressed: (null),
+                    child: Text("RESET"),
+                    onPressed: resetDrinks,
                   )
                 ],
               ),
@@ -66,6 +89,26 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
+  }
+
+  addDrinks(double amount) {
+    setState(() {
+      _totalDrinks += amount;
+    });
+  }
+
+  removeDrinks(double amount) {
+    setState(() {
+      if (_totalDrinks > amount) {
+        _totalDrinks -= amount;
+      }
+    });
+  }
+
+  resetDrinks() {
+    setState(() {
+      _totalDrinks = 0;
+    });
   }
 
   AppBar appbar = new AppBar(

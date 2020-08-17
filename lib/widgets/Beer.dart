@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class Beer extends StatefulWidget {
   double capacity;
-  Beer({Key key, this.capacity});
+  final void Function(double amountToAdd) addAction;
+  final void Function(double amountToRemove) removeAction;
+
+  Beer({Key key, this.capacity, this.addAction, this.removeAction});
 
   @override
   _BeerState createState() => _BeerState();
@@ -24,11 +27,13 @@ class _BeerState extends State<Beer> {
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.only(top: 12, bottom: 12),
       child: ListTile(
+        //Sumar
         trailing: GestureDetector(
           onTap: () => {
             setState(() {
               this.amount++;
             }),
+            widget.addAction(widget.capacity)
           },
           child: Container(
             decoration: new BoxDecoration(
@@ -43,11 +48,13 @@ class _BeerState extends State<Beer> {
                 Icon(Icons.add_circle_outline, color: Colors.white, size: 50),
           ),
         ),
+        // Restar
         leading: GestureDetector(
           onTap: () => {
             setState(() {
               if (this.amount > 0) this.amount--;
             }),
+            widget.removeAction(widget.capacity)
           },
           child: Container(
             decoration: new BoxDecoration(
@@ -62,6 +69,7 @@ class _BeerState extends State<Beer> {
                 color: Colors.white, size: 50),
           ),
         ),
+        // Información
         title: Center(
           // child: Text("${widget.capacity} // cantidad: $amount"),
           child: Row(
