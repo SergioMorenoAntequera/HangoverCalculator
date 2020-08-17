@@ -40,24 +40,28 @@ class _MainPageState extends State<MainPage> {
                   capacity: 0.25,
                   addAction: addDrinks,
                   removeAction: removeDrinks,
+                  cuantity: amount025,
                 ),
                 Beer(
                   key: UniqueKey(),
                   capacity: 0.33,
                   addAction: addDrinks,
                   removeAction: removeDrinks,
+                  cuantity: amount033,
                 ),
                 Beer(
                   key: UniqueKey(),
                   capacity: 0.50,
                   addAction: addDrinks,
                   removeAction: removeDrinks,
+                  cuantity: amount050,
                 ),
                 Beer(
                   key: UniqueKey(),
                   capacity: 1.00,
                   addAction: addDrinks,
                   removeAction: removeDrinks,
+                  cuantity: amount100,
                 ),
                 SizedBox(
                   height: 115,
@@ -118,9 +122,24 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  addDrinks(double amount) {
+  void addDrinks(double amount) {
     setState(() {
       _totalDrinks += amount;
+      switch (amount.toString()) {
+        case "0.25":
+          amount025++;
+          break;
+        case "0.33":
+          amount033++;
+          break;
+        case "0.5":
+          amount050++;
+          break;
+        case "1.0":
+          amount100++;
+          break;
+        default:
+      }
     });
   }
 
@@ -135,6 +154,10 @@ class _MainPageState extends State<MainPage> {
   resetDrinks() {
     setState(() {
       _totalDrinks = 0;
+      amount025 = 0;
+      amount033 = 0;
+      amount050 = 0;
+      amount100 = 0;
     });
   }
 
