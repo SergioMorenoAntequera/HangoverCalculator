@@ -19,8 +19,10 @@ class MyApp extends StatelessWidget {
   final ThemeData appTheme = new ThemeData(
     // Define the default brightness and colors.
     // brightness: Brightness.dark,
-    primaryColor: Colors.lightBlue[800],
-    accentColor: Colors.cyan[600],
+    primaryColor: Color(0xFFFFF4E3),
+    backgroundColor: Color(0xFFFFCDAB),
+    primaryColorDark: Color(0xFF5D5D5A),
+    accentColor: Color(0xFFFFA45C),
 
     // Define the default font family.
     fontFamily: 'Roboto',

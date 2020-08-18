@@ -23,6 +23,13 @@ class _MainPageState extends State<MainPage> {
       // body:
       body: Stack(
         children: <Widget>[
+          Container(
+            color: Colors.red,
+            width: 300,
+            height: 300,
+            child: Text("TEST"),
+          ),
+
           // App background I guess
           Container(
             color: Colors.grey[50],
@@ -90,7 +97,7 @@ class _MainPageState extends State<MainPage> {
                           "TOTAL",
                           // style: Theme.of(context).textTheme.headline2,
                           style: TextStyle(
-                            fontSize: 40,
+                            fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -98,9 +105,9 @@ class _MainPageState extends State<MainPage> {
                         Container(
                           padding: EdgeInsets.only(left: 5),
                           child: Text(
-                            "${formatTotal()} Litros",
+                            "${formatTotal()}L",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 40,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
