@@ -26,33 +26,35 @@ class _BeerState extends State<Beer> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.brown[300],
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.all(
           Radius.circular(15),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 10,
+            offset: Offset(-5, 5), // changes position of shadow
+          ),
+        ],
       ),
       margin: EdgeInsets.only(top: 5, right: 10, bottom: 5, left: 10),
       padding: EdgeInsets.only(top: 12, bottom: 12),
       child: ListTile(
         //Sumar
         trailing: GestureDetector(
-          onTap: () => {
-            // setState(() {
-            //   this.amount++;
-            // }),
-            widget.addAction(widget.capacity)
-          },
+          onTap: () => {widget.addAction(widget.capacity)},
           child: Container(
             decoration: new BoxDecoration(
-              color: Colors.green[700],
+              color: Theme.of(context).primaryColorDark,
               borderRadius: new BorderRadius.all(
                 Radius.circular(40.0),
               ),
             ),
             width: 60,
             height: 60,
-            child:
-                Icon(Icons.add_circle_outline, color: Colors.white, size: 50),
+            child: Icon(Icons.add, color: Colors.white, size: 40),
           ),
         ),
         // Restar
@@ -65,15 +67,14 @@ class _BeerState extends State<Beer> {
           },
           child: Container(
             decoration: new BoxDecoration(
-              color: Colors.red,
+              color: Theme.of(context).primaryColorDark,
               borderRadius: new BorderRadius.all(
                 Radius.circular(40.0),
               ),
             ),
             width: 60,
             height: 60,
-            child: Icon(Icons.remove_circle_outline,
-                color: Colors.white, size: 50),
+            child: Icon(Icons.remove, color: Colors.white, size: 40),
           ),
         ),
         // Información
@@ -82,10 +83,12 @@ class _BeerState extends State<Beer> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
+              // Imagen
               Container(
                 padding: EdgeInsets.only(right: 10),
                 child: Text("Imagen"),
               ),
+              // La info en si
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -94,7 +97,7 @@ class _BeerState extends State<Beer> {
                     // style: Theme.of(context).textTheme.headline2,
                     style: TextStyle(
                       fontSize: 30,
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -102,13 +105,17 @@ class _BeerState extends State<Beer> {
                     "Cantidad:",
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColorDark,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     widget.cuantity.toString(),
-                    style: Theme.of(context).textTheme.headline3,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Theme.of(context).primaryColorDark,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               )

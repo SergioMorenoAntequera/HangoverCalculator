@@ -18,61 +18,77 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppBar appbar = new AppBar(
+      title: Text("Hangover Calculator"),
+    );
+
     return Scaffold(
       appBar: appbar,
+      backgroundColor: Theme.of(context).backgroundColor,
       // body:
       body: Stack(
         children: <Widget>[
-          Container(
-            color: Colors.red,
-            width: 300,
-            height: 300,
-            child: Text("TEST"),
-          ),
-
           // App background I guess
           Container(
-            color: Colors.grey[50],
+            // color: Colors.grey[50],
             child: ListView(
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    "Alcoholico",
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                  ),
+                Stack(
+                  children: [
+                    Container(
+                      color: Theme.of(context).primaryColor,
+                      height: 160,
+                      width: 900,
+                    ),
+                    Column(
+                      children: [
+                        // Alcholico title on top of the list
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text(
+                            "Alcoholico",
+                            style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                          ),
+                        ),
+                        Beer(
+                          key: UniqueKey(),
+                          capacity: 0.25,
+                          addAction: addDrinks,
+                          removeAction: removeDrinks,
+                          cuantity: amount025,
+                        ),
+                        Beer(
+                          key: UniqueKey(),
+                          capacity: 0.33,
+                          addAction: addDrinks,
+                          removeAction: removeDrinks,
+                          cuantity: amount033,
+                        ),
+                        Beer(
+                          key: UniqueKey(),
+                          capacity: 0.50,
+                          addAction: addDrinks,
+                          removeAction: removeDrinks,
+                          cuantity: amount050,
+                        ),
+                        Beer(
+                          key: UniqueKey(),
+                          capacity: 1.00,
+                          addAction: addDrinks,
+                          removeAction: removeDrinks,
+                          cuantity: amount100,
+                        ),
+                        SizedBox(
+                          height: 115,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                Beer(
-                  key: UniqueKey(),
-                  capacity: 0.25,
-                  addAction: addDrinks,
-                  removeAction: removeDrinks,
-                  cuantity: amount025,
-                ),
-                Beer(
-                  key: UniqueKey(),
-                  capacity: 0.33,
-                  addAction: addDrinks,
-                  removeAction: removeDrinks,
-                  cuantity: amount033,
-                ),
-                Beer(
-                  key: UniqueKey(),
-                  capacity: 0.50,
-                  addAction: addDrinks,
-                  removeAction: removeDrinks,
-                  cuantity: amount050,
-                ),
-                Beer(
-                  key: UniqueKey(),
-                  capacity: 1.00,
-                  addAction: addDrinks,
-                  removeAction: removeDrinks,
-                  cuantity: amount100,
-                ),
-                SizedBox(
-                  height: 115,
-                )
               ],
             ),
           ),
@@ -81,7 +97,7 @@ class _MainPageState extends State<MainPage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              color: Color(0xffFFAB99),
+              color: Theme.of(context).primaryColorDark,
               padding:
                   EdgeInsets.only(top: 20, bottom: 20, left: 13, right: 13),
               child: Row(
@@ -95,10 +111,9 @@ class _MainPageState extends State<MainPage> {
                       children: <Widget>[
                         Text(
                           "TOTAL",
-                          // style: Theme.of(context).textTheme.headline2,
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white,
+                            color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -108,7 +123,7 @@ class _MainPageState extends State<MainPage> {
                             "${formatTotal()}L",
                             style: TextStyle(
                               fontSize: 40,
-                              color: Colors.white,
+                              color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -150,10 +165,25 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  removeDrinks(double amount) {
+  void removeDrinks(double amount) {
     setState(() {
       if (_totalDrinks >= amount) {
         _totalDrinks -= amount;
+        switch (amount.toString()) {
+          case "0.25":
+            amount025--;
+            break;
+          case "0.33":
+            amount033--;
+            break;
+          case "0.5":
+            amount050--;
+            break;
+          case "1.0":
+            amount100--;
+            break;
+          default:
+        }
       }
     });
   }
@@ -176,8 +206,4 @@ class _MainPageState extends State<MainPage> {
     int indexAux = this._totalDrinks.toString().indexOf(".");
     return this._totalDrinks.toString().substring(0, indexAux + 3);
   }
-
-  AppBar appbar = new AppBar(
-    title: Text("Hangover Calculator"),
-  );
 }
