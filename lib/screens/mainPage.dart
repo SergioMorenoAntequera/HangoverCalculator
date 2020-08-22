@@ -217,6 +217,9 @@ class _MainPageState extends State<MainPage> {
         }
       }
     });
+    if (amount025 == 0 && amount033 == 0 && amount050 == 0 && amount100 == 0) {
+      _totalDrinks = 0;
+    }
   }
 
   resetDrinks() {

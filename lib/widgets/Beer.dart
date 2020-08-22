@@ -157,13 +157,13 @@ class _BeerState extends State<Beer> {
   void _showDialog() {
     var priceDialog = AlertDialog(
       title: Text("Establecer precio"),
-      content: Text("test wwwwwwwwwwwwooo"),
+      content: Text("Establece el de la cerveza de "),
       actions: [
-        FlatButton(
+        RaisedButton(
           onPressed: () => {Navigator.pop(context)},
           child: Text("Cancelar"),
         ),
-        FlatButton(onPressed: () => {}, child: Text("Confirmar")),
+        RaisedButton(onPressed: () => {}, child: Text("Confirmar")),
       ],
     );
 
