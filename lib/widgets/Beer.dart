@@ -86,7 +86,10 @@ class _BeerState extends State<Beer> {
               // Imagen
               Container(
                 padding: EdgeInsets.only(right: 10),
-                child: Text("Imagen"),
+                child: Image(
+                  image: getImage(),
+                  width: 70,
+                ),
               ),
               // La info en si
               Column(
@@ -124,5 +127,13 @@ class _BeerState extends State<Beer> {
         ),
       ),
     );
+  }
+
+  AssetImage getImage() {
+    var auxString = widget.capacity.toString().replaceAll(".", "");
+    if (auxString.length < 3) {
+      auxString += "0";
+    }
+    return AssetImage("assets/images/" + auxString + ".PNG");
   }
 }
