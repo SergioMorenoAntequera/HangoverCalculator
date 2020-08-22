@@ -22,15 +22,34 @@ class _MainPageState extends State<MainPage> {
       title: Text("Hangover Calculator"),
     );
 
+    Container fab = new Container(
+      height: 85,
+      width: 85,
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: FloatingActionButton(
+          onPressed: resetDrinks,
+          backgroundColor: Theme.of(context).backgroundColor,
+          child: Icon(
+            Icons.refresh,
+            size: 40,
+            color: Theme.of(context).primaryColorDark,
+          ),
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: appbar,
+      floatingActionButton: fab,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Theme.of(context).backgroundColor,
+
       // body:
       body: Stack(
         children: <Widget>[
           // App background I guess
           Container(
-            // color: Colors.grey[50],
             child: ListView(
               children: <Widget>[
                 Stack(
@@ -131,10 +150,10 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
-                  RaisedButton(
-                    child: Text("RESET"),
-                    onPressed: resetDrinks,
-                  )
+                  // RaisedButton(
+                  //   child: Text("RESET"),
+                  //   onPressed: resetDrinks,
+                  // )
                 ],
               ),
             ),
