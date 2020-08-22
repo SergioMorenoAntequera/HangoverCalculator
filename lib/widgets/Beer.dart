@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Beer extends StatefulWidget {
   double capacity;
@@ -112,13 +113,29 @@ class _BeerState extends State<Beer> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    widget.cuantity.toString(),
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Theme.of(context).primaryColorDark,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        widget.cuantity.toString(),
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Theme.of(context).primaryColorDark,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 30),
+                      GestureDetector(
+                        onTap: _showDialog,
+                        child: Text(
+                          "0€",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Theme.of(context).primaryColorDark,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               )
@@ -135,5 +152,26 @@ class _BeerState extends State<Beer> {
       auxString += "0";
     }
     return AssetImage("assets/images/" + auxString + ".PNG");
+  }
+
+  void _showDialog() {
+    var priceDialog = AlertDialog(
+      title: Text("Establecer precio"),
+      content: Text("test wwwwwwwwwwwwooo"),
+      actions: [
+        FlatButton(
+          onPressed: () => {Navigator.pop(context)},
+          child: Text("Cancelar"),
+        ),
+        FlatButton(onPressed: () => {}, child: Text("Confirmar")),
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return priceDialog;
+      },
+    );
   }
 }

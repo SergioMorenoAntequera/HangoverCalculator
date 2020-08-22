@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/Beer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -42,7 +43,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: appbar,
       floatingActionButton: fab,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Theme.of(context).backgroundColor,
 
       // body:
@@ -187,19 +188,30 @@ class _MainPageState extends State<MainPage> {
   void removeDrinks(double amount) {
     setState(() {
       if (_totalDrinks >= amount) {
-        _totalDrinks -= amount;
         switch (amount.toString()) {
           case "0.25":
-            amount025--;
+            if (amount025 > 0) {
+              amount025--;
+              _totalDrinks -= amount;
+            }
             break;
           case "0.33":
-            amount033--;
+            if (amount033 > 0) {
+              amount033--;
+              _totalDrinks -= amount;
+            }
             break;
           case "0.5":
-            amount050--;
+            if (amount050 > 0) {
+              amount050--;
+              _totalDrinks -= amount;
+            }
             break;
           case "1.0":
-            amount100--;
+            if (amount100 > 0) {
+              amount100--;
+              _totalDrinks -= amount;
+            }
             break;
           default:
         }
