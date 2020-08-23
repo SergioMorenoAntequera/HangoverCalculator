@@ -164,52 +164,52 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void addDrinks(double amount) {
+  void addDrinks(double amount, int cuantity) {
     setState(() {
       _totalDrinks += amount;
       switch (amount.toString()) {
         case "0.25":
-          amount025++;
+          amount025 += cuantity;
           break;
         case "0.33":
-          amount033++;
+          amount033 += cuantity;
           break;
         case "0.5":
-          amount050++;
+          amount050 += cuantity;
           break;
         case "1.0":
-          amount100++;
+          amount100 += cuantity;
           break;
         default:
       }
     });
   }
 
-  void removeDrinks(double amount) {
+  void removeDrinks(double amount, int cuantity) {
     setState(() {
       if (_totalDrinks >= amount) {
         switch (amount.toString()) {
           case "0.25":
-            if (amount025 > 0) {
-              amount025--;
+            if (amount025 - cuantity >= 0) {
+              amount025 -= cuantity;
               _totalDrinks -= amount;
             }
             break;
           case "0.33":
-            if (amount033 > 0) {
-              amount033--;
+            if (amount033 - cuantity >= 0) {
+              amount033 -= cuantity;
               _totalDrinks -= amount;
             }
             break;
           case "0.5":
-            if (amount050 > 0) {
-              amount050--;
+            if (amount050 - cuantity >= 0) {
+              amount050 -= cuantity;
               _totalDrinks -= amount;
             }
             break;
           case "1.0":
-            if (amount100 > 0) {
-              amount100--;
+            if (amount100 - cuantity >= 0) {
+              amount100 -= cuantity;
               _totalDrinks -= amount;
             }
             break;

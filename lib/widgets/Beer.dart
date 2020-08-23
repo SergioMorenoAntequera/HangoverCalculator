@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Beer extends StatefulWidget {
   double capacity;
   int cuantity;
-  final void Function(double cuantityToAdd) addAction;
-  final void Function(double cuantityToRemove) removeAction;
+  final void Function(double cuantityToAdd, int amountToAdd) addAction;
+  final void Function(double cuantityToRemove, int amountToRemove) removeAction;
 
   Beer({
     Key key,
@@ -45,7 +45,7 @@ class _BeerState extends State<Beer> {
       child: ListTile(
         //Sumar
         trailing: GestureDetector(
-          onTap: () => {widget.addAction(widget.capacity)},
+          onTap: () => {widget.addAction(widget.capacity, 1)},
           child: Container(
             decoration: new BoxDecoration(
               color: Theme.of(context).primaryColorDark,
@@ -64,7 +64,7 @@ class _BeerState extends State<Beer> {
             setState(() {
               if (this.amount > 0) this.amount--;
             }),
-            widget.removeAction(widget.capacity)
+            widget.removeAction(widget.capacity, 1)
           },
           child: Container(
             decoration: new BoxDecoration(
