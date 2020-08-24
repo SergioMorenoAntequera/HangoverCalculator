@@ -151,10 +151,6 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
-                  // RaisedButton(
-                  //   child: Text("RESET"),
-                  //   onPressed: resetDrinks,
-                  // )
                 ],
               ),
             ),
