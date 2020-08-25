@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../widgets/Beer.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hangover_calculator/models/Beer.dart';
+import '../widgets/BeerTile.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -16,6 +17,12 @@ class _MainPageState extends State<MainPage> {
   int amount050 = 0;
   int amount100 = 0;
   double _totalDrinks = 0;
+
+  static double totalAmount = 0;
+  Beer beer025 = new Beer(0.25, 0, 1, "025", totalAmount);
+  Beer beer033 = new Beer(0.33, 0, 1, "033", totalAmount);
+  Beer beer050 = new Beer(0.50, 0, 1, "050", totalAmount);
+  Beer beer100 = new Beer(1.00, 0, 1, "100", totalAmount);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +50,6 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: appbar,
       floatingActionButton: fab,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Theme.of(context).backgroundColor,
 
       // body:
@@ -74,34 +80,43 @@ class _MainPageState extends State<MainPage> {
                             ),
                           ),
                         ),
-                        Beer(
+                        BeerTile(
                           key: UniqueKey(),
-                          capacity: 0.25,
-                          addAction: addDrinks,
-                          removeAction: removeDrinks,
-                          cuantity: amount025,
+                          beer: beer025,
                         ),
-                        Beer(
+                        BeerTile(
                           key: UniqueKey(),
-                          capacity: 0.33,
-                          addAction: addDrinks,
-                          removeAction: removeDrinks,
-                          cuantity: amount033,
+                          beer: beer033,
                         ),
-                        Beer(
+                        BeerTile(
                           key: UniqueKey(),
-                          capacity: 0.50,
-                          addAction: addDrinks,
-                          removeAction: removeDrinks,
-                          cuantity: amount050,
+                          beer: beer050,
                         ),
-                        Beer(
+                        BeerTile(
                           key: UniqueKey(),
-                          capacity: 1.00,
-                          addAction: addDrinks,
-                          removeAction: removeDrinks,
-                          cuantity: amount100,
+                          beer: beer100,
                         ),
+                        // BeerTile(
+                        //   key: UniqueKey(),
+                        //   capacity: 0.33,
+                        //   addAction: addDrinks,
+                        //   removeAction: removeDrinks,
+                        //   cuantity: amount033,
+                        // ),
+                        // BeerTile(
+                        //   key: UniqueKey(),
+                        //   capacity: 0.50,
+                        //   addAction: addDrinks,
+                        //   removeAction: removeDrinks,
+                        //   cuantity: amount050,
+                        // ),
+                        // BeerTile(
+                        //   key: UniqueKey(),
+                        //   capacity: 1.00,
+                        //   addAction: addDrinks,
+                        //   removeAction: removeDrinks,
+                        //   cuantity: amount100,
+                        // ),
                         SizedBox(
                           height: 115,
                         ),
@@ -129,6 +144,7 @@ class _MainPageState extends State<MainPage> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        // Total TEXTO
                         Text(
                           "TOTAL",
                           style: TextStyle(
@@ -137,10 +153,11 @@ class _MainPageState extends State<MainPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        // Total NUMERO
                         Container(
                           padding: EdgeInsets.only(left: 5),
                           child: Text(
-                            "${formatTotal()}L",
+                            "$totalAmount",
                             style: TextStyle(
                               fontSize: 40,
                               color: Theme.of(context).accentColor,
@@ -161,24 +178,24 @@ class _MainPageState extends State<MainPage> {
   }
 
   void addDrinks(double amount, int cuantity) {
-    setState(() {
-      _totalDrinks += amount;
-      switch (amount.toString()) {
-        case "0.25":
-          amount025 += cuantity;
-          break;
-        case "0.33":
-          amount033 += cuantity;
-          break;
-        case "0.5":
-          amount050 += cuantity;
-          break;
-        case "1.0":
-          amount100 += cuantity;
-          break;
-        default:
-      }
-    });
+    // setState(() {
+    //   _totalDrinks += amount;
+    //   switch (amount.toString()) {
+    //     case "0.25":
+    //       amount025 += cuantity;
+    //       break;
+    //     case "0.33":
+    //       amount033 += cuantity;
+    //       break;
+    //     case "0.5":
+    //       amount050 += cuantity;
+    //       break;
+    //     case "1.0":
+    //       amount100 += cuantity;
+    //       break;
+    //     default:
+    //   }
+    // });
   }
 
   void removeDrinks(double amount, int cuantity) {
@@ -221,6 +238,12 @@ class _MainPageState extends State<MainPage> {
   resetDrinks() {
     setState(() {
       _totalDrinks = 0;
+      totalAmount = 0;
+      beer025.amount = 0;
+      beer033.amount = 0;
+      beer050.amount = 0;
+      beer100.amount = 0;
+      beer025.totalAmount = 0;
       amount025 = 0;
       amount033 = 0;
       amount050 = 0;
