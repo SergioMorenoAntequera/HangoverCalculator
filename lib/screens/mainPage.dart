@@ -18,11 +18,14 @@ class _MainPageState extends State<MainPage> {
   int amount100 = 0;
   double _totalDrinks = 0;
 
-  static double totalAmount = 0;
-  Beer beer025 = new Beer(0.25, 0, 1, "025", totalAmount);
-  Beer beer033 = new Beer(0.33, 0, 1, "033", totalAmount);
-  Beer beer050 = new Beer(0.50, 0, 1, "050", totalAmount);
-  Beer beer100 = new Beer(1.00, 0, 1, "100", totalAmount);
+  // static double totalAmount = 0;
+  // We need to pass a map to use it as a
+  static Map<String, double> totalCuantity = {'value': 0};
+
+  Beer beer025 = new Beer(0.25, 0, 1, "025", totalCuantity);
+  Beer beer033 = new Beer(0.33, 0, 1, "033", totalCuantity);
+  Beer beer050 = new Beer(0.50, 0, 1, "050", totalCuantity);
+  Beer beer100 = new Beer(1.00, 0, 1, "100", totalCuantity);
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +160,7 @@ class _MainPageState extends State<MainPage> {
                         Container(
                           padding: EdgeInsets.only(left: 5),
                           child: Text(
-                            "$totalAmount",
+                            "${totalCuantity['value']}",
                             style: TextStyle(
                               fontSize: 40,
                               color: Theme.of(context).accentColor,
@@ -238,12 +241,12 @@ class _MainPageState extends State<MainPage> {
   resetDrinks() {
     setState(() {
       _totalDrinks = 0;
-      totalAmount = 0;
+      // totalAmount['value'] = 0;
       beer025.amount = 0;
       beer033.amount = 0;
       beer050.amount = 0;
       beer100.amount = 0;
-      beer025.totalAmount = 0;
+      // beer025.totalAmount = 0;
       amount025 = 0;
       amount033 = 0;
       amount050 = 0;

@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../screens/mainPage.dart';
 
 class Beer {
   double cuantity;
   int amount;
   double price;
   String image;
-  double totalAmount;
+  Map totalCuantity;
 
-  Beer(this.cuantity, this.amount, this.price, this.image, this.totalAmount);
+  Beer(this.cuantity, this.amount, this.price, this.image, this.totalCuantity);
 
   //////////////////////////////////////
   // Add and remove beer from the amount
   addBeerAmount(int amountToAdd) {
     this.amount += amountToAdd;
     // Here we update it
-    this.totalAmount += this.cuantity * amountToAdd;
-    print("Adding to beer " +
-        this.cuantity.toString() +
-        " // " +
-        amountToAdd.toString());
-    print("Total:" + this.totalAmount.toString());
+    totalCuantity['value'] += amountToAdd * cuantity;
+    print(totalCuantity['value']);
   }
 
   removeBeerAmount(int amountToRemove) {
