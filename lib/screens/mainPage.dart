@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hangover_calculator/models/Beer.dart';
+import 'package:hangover_calculator/models/TotalBar.dart';
+import 'package:provider/provider.dart';
 import '../widgets/BeerTile.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -133,16 +135,20 @@ class _MainPageState extends State<MainPage> {
                         ),
                         // Total NUMERO
                         Container(
-                          padding: EdgeInsets.only(left: 5),
-                          child: Text(
-                            "${totalCuantity['value']}",
-                            style: TextStyle(
-                              fontSize: 40,
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                            padding: EdgeInsets.only(left: 5),
+                            // CONSUMER (Preferences)
+                            child: Consumer<TotalBar>(
+                              builder: (context, bar, child) {
+                                return Text(
+                                  "${bar.totalCuantity}",
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    color: Theme.of(context).accentColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              },
+                            )),
                       ],
                     ),
                   ),
@@ -157,6 +163,10 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
+  }
+
+  void updateTotal() {
+    print("Metodo de dentro de mainPage");
   }
 
   resetDrinks() {

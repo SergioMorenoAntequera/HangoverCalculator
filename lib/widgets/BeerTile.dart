@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hangover_calculator/models/TotalBar.dart';
+import 'package:provider/provider.dart';
 import '../models/Beer.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 

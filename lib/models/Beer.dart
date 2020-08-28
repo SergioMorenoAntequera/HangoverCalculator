@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hangover_calculator/models/TotalBar.dart';
+import 'package:provider/provider.dart';
 
 class Beer {
   double cuantity;
@@ -14,9 +16,7 @@ class Beer {
   // Add and remove beer from the amount
   addBeerAmount(int amountToAdd) {
     this.amount += amountToAdd;
-    // Here we update it
     totalCuantity['value'] += amountToAdd * cuantity;
-    print(totalCuantity['value']);
   }
 
   removeBeerAmount(int amountToRemove) {

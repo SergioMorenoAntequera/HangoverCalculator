@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hangover_calculator/models/TotalBar.dart';
 import 'package:hangover_calculator/screens/mainPage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TotalBar(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
