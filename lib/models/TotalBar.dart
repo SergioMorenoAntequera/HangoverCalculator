@@ -4,19 +4,23 @@ import 'package:flutter/cupertino.dart';
 class TotalBar extends ChangeNotifier {
   double totalCuantity = 0;
 
-  void addCuantity(double toAdd) {
+  addCuantity(double toAdd) {
     this.totalCuantity += toAdd;
-    this.totalCuantity = num.parse(this.totalCuantity.toStringAsFixed(2));
+    prepareTotalCuantityToShow();
     notifyListeners();
   }
 
-  void removeCuantity(double toRemove) {
+  removeCuantity(double toRemove) {
     this.totalCuantity += toRemove;
-    this.totalCuantity = num.parse(this.totalCuantity.toStringAsFixed(2));
+    prepareTotalCuantityToShow();
     notifyListeners();
   }
 
-  void resetCuantity() {
+  resetCuantity() {
     totalCuantity = 0;
+  }
+
+  prepareTotalCuantityToShow() {
+    this.totalCuantity = num.parse(this.totalCuantity.toStringAsFixed(2));
   }
 }
