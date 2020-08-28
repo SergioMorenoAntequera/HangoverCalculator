@@ -170,6 +170,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   resetDrinks() {
+    Provider.of<TotalBar>(context, listen: false).resetCuantity();
     setState(() {
       totalCuantity['value'] = 0;
       beer025.amount = 0;

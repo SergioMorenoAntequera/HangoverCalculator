@@ -31,7 +31,7 @@ class _BeerState extends State<BeerTile> {
     var addButton = GestureDetector(
       onTap: () => {
         setState(() {
-          widget.beer.addBeerAmount(1);
+          widget.beer.addBeerAmount(1, context);
         }),
       },
       child: Container(
@@ -51,7 +51,7 @@ class _BeerState extends State<BeerTile> {
     var minusButton = GestureDetector(
       onTap: () => {
         setState(() {
-          if (widget.beer.amount > 0) widget.beer.removeBeerAmount(1);
+          if (widget.beer.amount > 0) widget.beer.removeBeerAmount(1, context);
         }),
         // widget.removeAction(widget.capacity, 1)
       },

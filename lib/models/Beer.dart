@@ -14,14 +14,18 @@ class Beer {
 
   //////////////////////////////////////
   // Add and remove beer from the amount
-  addBeerAmount(int amountToAdd) {
+  addBeerAmount(int amountToAdd, BuildContext context) {
     this.amount += amountToAdd;
-    totalCuantity['value'] += amountToAdd * cuantity;
+    // totalCuantity['value'] += ;
+    Provider.of<TotalBar>(context, listen: false)
+        .addCuantity(amountToAdd * cuantity);
   }
 
-  removeBeerAmount(int amountToRemove) {
+  removeBeerAmount(int amountToRemove, BuildContext context) {
     if (amountToRemove <= this.amount) {
       this.amount -= amountToRemove;
+      Provider.of<TotalBar>(context, listen: false)
+          .addCuantity(amountToRemove * cuantity);
     }
   }
 
