@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hangover_calculator/models/TotalBar.dart';
-import 'package:provider/provider.dart';
+// import 'package:hangover_calculator/models/TotalBar.dart';
+// import 'package:provider/provider.dart';
 import '../models/Beer.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,9 +22,6 @@ class BeerTile extends StatefulWidget {
 }
 
 class _BeerState extends State<BeerTile> {
-  // int amount = 0;
-  // double price = 2;
-
   @override
   Widget build(BuildContext context) {
     // Right Button
@@ -115,11 +112,7 @@ class _BeerState extends State<BeerTile> {
                   ),
                   SizedBox(width: 30),
                   GestureDetector(
-                    onTap: () => {
-                      setState(() {
-                        widget.beer.setPrice(23);
-                      }),
-                    },
+                    onTap: _showPriceDialog,
                     child: Text(
                       "${widget.beer.price}€",
                       style: TextStyle(
@@ -167,79 +160,64 @@ class _BeerState extends State<BeerTile> {
 
   /////////////////////////////////////////////////////////////////////////////
   //AUXILIAR METHODS //////////////////////////////////////////////////////////
+  // To show the price dialog
+  void _showPriceDialog() {
+    final myController = TextEditingController();
 
-  // To get and place the image for the beer
-  // AssetImage getImage() {
-  //   var auxString = widget.capacity.toString().replaceAll(".", "");
-  //   if (auxString.length < 3) {
-  //     auxString += "0";
-  //   }
-  //   return AssetImage("assets/images/" + auxString + ".PNG");
-  // }
+    var priceDialog = AlertDialog(
+      title: Text("Establecer precio"),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextFormField(
+            keyboardType: TextInputType.number,
+            controller: myController,
+            // initialValue: "PRA",
+            decoration: InputDecoration(
+              hintText: 'Introduce el nuevo precio',
+            ),
+          )
+        ],
+      ),
+      actions: [
+        RaisedButton(
+          onPressed: () =>
+              {Navigator.pop(context), FocusScope.of(context).unfocus()},
+          child: Text("Cancelar"),
+        ),
+        RaisedButton(
+          onPressed: () => confirmChangePrice(myController.text),
+          child: Text("Confirmar"),
+        ),
+      ],
+    );
 
-  // // To show the price dialog
-  // void _showPriceDialog() async {
-  //   // var preferencesPrice = await getPriceOrSetDefault();
-  //   // print(preferencesPrice);
-  //   // setState(() {
-  //   //   price = preferencesPrice;
-  //   // });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return priceDialog;
+      },
+    );
+  }
 
-  //   final myController = TextEditingController();
+  confirmChangePrice(String newPrice) {
+    // Validations
+    if (newPrice == "") {
+      Navigator.pop(context);
+      return null;
+    }
+    if (newPrice.contains(",")) {
+      newPrice = newPrice.replaceAll(",", ".");
+    }
+    if (newPrice.contains("-") || newPrice.contains(" ")) {
+      newPrice = newPrice.replaceAll("-", "");
+      newPrice = newPrice.replaceAll(" ", "");
+    }
 
-  //   var priceDialog = AlertDialog(
-  //     title: Text("Establecer precio"),
-  //     content: Column(
-  //       mainAxisSize: MainAxisSize.min,
-  //       children: [
-  //         TextFormField(
-  //           keyboardType: TextInputType.number,
-  //           // controller: myController,
-  //           // initialValue: this.price.toString(),
-  //           decoration: InputDecoration(
-  //             hintText: 'Introduce el nuevo precio',
-  //           ),
-  //         )
-  //       ],
-  //     ),
-  //     actions: [
-  //       RaisedButton(
-  //         onPressed: () => {Navigator.pop(context)},
-  //         child: Text("Cancelar"),
-  //       ),
-  //       RaisedButton(
-  //         onPressed: () => {},
-  //         child: Text("Confirmar"),
-  //       ),
-  //     ],
-  //   );
-
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return priceDialog;
-  //     },
-  //   );
-  // }
-
-  // // To get the price or set the default one
-  // Future<double> getPriceOrSetDefault() async {
-  //   String priceKey = "price" + widget.capacity.toString();
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   double beerPrice = prefs.getDouble(priceKey);
-
-  //   // return Future.delayed(Duration(seconds: 1), () => "DESDE MI CASA CHAVALIN");
-  //   if (beerPrice == null) {
-  //     prefs.setDouble(priceKey, 1.0);
-  //     return 1.0;
-  //   }
-
-  //   return beerPrice;
-  // }
-
-  // // To set a new price when we close the dialog (mainly)
-  // void setPrice(double price) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.setDouble("price" + widget.capacity.toString(), price);
-  // }
+    FocusScope.of(context).unfocus();
+    setState(() {
+      widget.beer.price = double.parse(newPrice);
+    });
+    Navigator.pop(context);
+  }
 }

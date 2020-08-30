@@ -44,7 +44,7 @@ class Beer {
   }
 
   String getPriceToString() {
-    var priceStringAux = price.toString();
+    var priceStringAux = this.price.toString();
     while (priceStringAux.length < 4) {
       priceStringAux += "0";
     }
