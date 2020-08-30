@@ -1,16 +1,19 @@
-# hangover_calculator
+# Hangover Calculator 🍻 
 
-A new Flutter project.
+A mobile app developed with Flutter that allow us to see how much beer are we drinking by adding different kinds of beer, the amount that they have and the price so we can control better all those factors.
 
-## Getting Started
+This app is also an excuse for me to practice some Flutter.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+To get it just get into lib/apk and download and install the one that suits you better
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
