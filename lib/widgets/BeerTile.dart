@@ -114,17 +114,21 @@ class _BeerState extends State<BeerTile> {
                     ),
                   ),
                   SizedBox(width: 30),
-                  // GestureDetector(
-                  //   onTap: _showPriceDialog,
-                  //   child: Text(
-                  //     "${widget.beer.price}€",
-                  //     style: TextStyle(
-                  //       fontSize: 15,
-                  //       color: Theme.of(context).primaryColorDark,
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   ),
-                  // ),
+                  GestureDetector(
+                    onTap: () => {
+                      setState(() {
+                        widget.beer.setPrice(23);
+                      }),
+                    },
+                    child: Text(
+                      "${widget.beer.price}€",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).primaryColorDark,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],

@@ -17,10 +17,10 @@ class _MainPageState extends State<MainPage> {
   // We need to pass a map to use it as a
   static Map<String, double> totalCuantity = {'value': 0};
 
-  Beer beer025 = new Beer(0.25, 0, 1, "025", totalCuantity);
-  Beer beer033 = new Beer(0.33, 0, 1, "033", totalCuantity);
-  Beer beer050 = new Beer(0.50, 0, 1, "050", totalCuantity);
-  Beer beer100 = new Beer(1.00, 0, 1, "100", totalCuantity);
+  Beer beer025 = new Beer(0.25, 0, 2.5, "025", totalCuantity);
+  Beer beer033 = new Beer(0.33, 0, 2.8, "033", totalCuantity);
+  Beer beer050 = new Beer(0.50, 0, 4, "050", totalCuantity);
+  Beer beer100 = new Beer(1.00, 0, 1.8, "100", totalCuantity);
 
   @override
   Widget build(BuildContext context) {

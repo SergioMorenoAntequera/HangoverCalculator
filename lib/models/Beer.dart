@@ -29,6 +29,10 @@ class Beer {
     }
   }
 
+  setPrice(double newPrice) {
+    this.price = newPrice;
+  }
+
   ///////////////////////////////////
   // Get the full price and cuantity
   double getTotalPrice() {
