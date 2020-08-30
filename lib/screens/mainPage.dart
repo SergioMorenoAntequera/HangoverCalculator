@@ -152,6 +152,40 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
+                  Container(
+                    padding: EdgeInsets.only(left: 0, right: 30),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        // Total TEXTO
+                        Text(
+                          "TOTAL €",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // Total NUMERO
+                        Container(
+                            padding: EdgeInsets.only(left: 5),
+                            // CONSUMER (Preferences)
+                            child: Consumer<TotalBar>(
+                              builder: (context, bar, child) {
+                                return Text(
+                                  "${bar.totalPrice}",
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    color: Theme.of(context).accentColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              },
+                            )),
+                      ],
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: fab,
@@ -171,6 +205,7 @@ class _MainPageState extends State<MainPage> {
 
   resetDrinks() {
     Provider.of<TotalBar>(context, listen: false).resetCuantity();
+    Provider.of<TotalBar>(context, listen: false).resetPrice();
     setState(() {
       totalCuantity['value'] = 0;
       beer025.amount = 0;

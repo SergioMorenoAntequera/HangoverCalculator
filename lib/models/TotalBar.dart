@@ -32,6 +32,10 @@ class TotalBar extends ChangeNotifier {
     notifyListeners();
   }
 
+  resetPrice() {
+    totalPrice = 0;
+  }
+
   prepareTotalCuantityToShow() {
     this.totalCuantity = num.parse(this.totalCuantity.toStringAsFixed(2));
   }

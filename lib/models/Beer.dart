@@ -19,13 +19,16 @@ class Beer {
     // totalCuantity['value'] += ;
     Provider.of<TotalBar>(context, listen: false)
         .addCuantity(amountToAdd * cuantity);
+    Provider.of<TotalBar>(context, listen: false).addPrice(amountToAdd * price);
   }
 
   removeBeerAmount(int amountToRemove, BuildContext context) {
     if (amountToRemove <= this.amount) {
       this.amount -= amountToRemove;
       Provider.of<TotalBar>(context, listen: false)
-          .addCuantity(amountToRemove * cuantity);
+          .removeCuantity(amountToRemove * cuantity);
+      Provider.of<TotalBar>(context, listen: false)
+          .removePrice(amountToRemove * price);
     }
   }
 
