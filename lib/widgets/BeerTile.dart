@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:hangover_calculator/models/TotalBar.dart';
-// import 'package:provider/provider.dart';
+import 'package:hangover_calculator/models/TotalBar.dart';
+import 'package:provider/provider.dart';
 import '../models/Beer.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -215,6 +215,12 @@ class _BeerState extends State<BeerTile> {
     }
 
     FocusScope.of(context).unfocus();
+    if (widget.beer.amount != 0) {
+      Provider.of<TotalBar>(context, listen: false)
+          .removePrice(widget.beer.amount * widget.beer.price);
+      Provider.of<TotalBar>(context, listen: false)
+          .addPrice(widget.beer.amount * double.parse(newPrice));
+    }
     setState(() {
       widget.beer.price = double.parse(newPrice);
     });
